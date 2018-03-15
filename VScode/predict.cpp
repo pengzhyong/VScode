@@ -11,6 +11,7 @@
 #include <fstream>
 using namespace std;
 
+
 //你要完成的功能总入口
 void predict_server(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int data_num, char * filename)
 {
