@@ -142,6 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="io.h" />
+    <ClInclude Include="predict.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ecs.cpp" />
+    <ClCompile Include="io.cpp" />
+    <ClCompile Include="predict.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
