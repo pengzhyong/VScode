@@ -15,6 +15,8 @@ using namespace std;
 //你要完成的功能总入口
 void predict_server(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int data_num, char * filename)
 {
+
+
 	char* ch_flavors = info[2];
 	//int flavorNums = ch_flavors[0] - '0';//服务器规格数
 	//int flavorNums = stoi(ch_flavors);
