@@ -11,7 +11,9 @@ int main()
     int info_line_num;
 
 
-	char *data_file = "data/TrainData_2015.1.1_2015.2.19.txt";
+	//char *data_file = "data/TrainData_2015.1.1_2015.2.19.txt";
+	char *data_file = "data/TrainData_long.txt";
+
 
     data_line_num = read_file(data, MAX_DATA_NUM, data_file);
 

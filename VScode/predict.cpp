@@ -11,13 +11,35 @@
 #include <fstream>
 using namespace std;
 
+void gen_seq(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int data_num);
+
+
 //你要完成的功能总入口
 void predict_server(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int data_num, char * filename)
 {
-	char* ch_flavors = info[2];
+	//gen_seq(info, data, data_num);
+	int coefNums = 7;
+	//初始化
+	double* coef = new double[coefNums];
+	for (int i = 0; i < coefNums; i++)
+	{
+		coef[i] = 0.1 * (rand() % 10 - 5);
+	}
+
+
+	// 需要输出的内容
+	char * result_file = (char *)"17\n\n0 8 0 20";
+
+	// 直接调用输出文件的方法输出到指定文件中(ps请注意格式的正确性，如果有解，第一行只有一个数据；第二行为空；第三行开始才是具体的数据，数据之间用一个空格分隔开)
+	write_result(result_file, filename);
+}
+
+void gen_seq(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int data_num)
+{
+	const char* ch_flavors = info[2];
 	//int flavorNums = ch_flavors[0] - '0';//服务器规格数
-	//int flavorNums = stoi(ch_flavors);
-	int flavorNums = 15;
+	int flavorNums = stoi(ch_flavors);
+	//int flavorNums = 15;
 
 	string* flavors = new string[flavorNums];
 	for (int i = 0; i < flavorNums; i++)
@@ -39,7 +61,7 @@ void predict_server(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int da
 	string beginData;
 	vector<vector<int>> dataVec;//历史请求数据，每一个元素为每天的请求
 	dataVec.reserve(data_num);
-	
+
 	string iden;//虚拟机请求ID
 	string flavorType;//虚拟机型号
 	string reqDate;//请求日期
@@ -65,7 +87,7 @@ void predict_server(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int da
 				}
 				flaIndex++;
 			}
-			if(flaIndex < flavorNums)//判断flavor是否在要求计算的的flavor中
+			if (flaIndex < flavorNums)//判断flavor是否在要求计算的的flavor中
 				dataVec.at(dayIndex).at(flaIndex)++;
 		}
 		else
@@ -84,7 +106,7 @@ void predict_server(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int da
 				dataVec.at(dayIndex).at(flaIndex)++;
 		}
 	}
-	
+
 	vector<vector<int>> seqVec;//每个元素是一个flavor时间序列
 	int dayNums = dataVec.size();
 	for (int i = 0; i < flavorNums; i++)
@@ -106,9 +128,9 @@ void predict_server(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int da
 	ofstream outFile(seqFileName);
 	/*for (int i = 0; i < flavorNums; i++)
 	{
-		string temp;
-		istringstream(flavors[i]) >> temp;
-		outFile << temp << "\t";
+	string temp;
+	istringstream(flavors[i]) >> temp;
+	outFile << temp << "\t";
 	}
 	outFile << endl;*/
 	for (int i = 0; i < dayNums; i++)
@@ -120,9 +142,16 @@ void predict_server(char * info[MAX_INFO_NUM], char * data[MAX_DATA_NUM], int da
 		outFile << endl;
 	}
 	outFile.close();
-	// 需要输出的内容
-	char * result_file = (char *)"17\n\n0 8 0 20";
+}
 
-	// 直接调用输出文件的方法输出到指定文件中(ps请注意格式的正确性，如果有解，第一行只有一个数据；第二行为空；第三行开始才是具体的数据，数据之间用一个空格分隔开)
-	write_result(result_file, filename);
+void myPredict(vector<vector<int>> &seqVec)
+{
+	int coefNums = 7;
+	//初始化
+	double* coef = new double[coefNums];
+	for (int i = 0; i < coefNums; i++)
+	{
+		coef[i] = 0.1 * (rand() % 10 - 5);
+	}
+
 }
