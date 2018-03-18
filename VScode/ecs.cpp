@@ -12,7 +12,9 @@ int main()
 
 
 	//char *data_file = "data/TrainData_2015.1.1_2015.2.19.txt";
-	char *data_file = "data/TrainData_long.txt";
+	char *data_file = "data/more/data.txt";
+
+	//char *data_file = "data/TrainData_long.txt";
 
 
     data_line_num = read_file(data, MAX_DATA_NUM, data_file);
@@ -24,7 +26,7 @@ int main()
         return -1;
     }
 	
-	char *input_file = "data/input_5flavors_cpu_7days(1).txt";
+	char *input_file = "data/info.txt";
 
     info_line_num = read_file(info, MAX_INFO_NUM, input_file);
 
@@ -47,3 +49,45 @@ int main()
 	return 0;
 }
 
+//int main(int argc, char *argv[])
+//{
+//	print_time("Begin");
+//	char *data[MAX_DATA_NUM];
+//	char *info[MAX_INFO_NUM];
+//	int data_line_num;
+//	int info_line_num;
+//
+//
+//	char *data_file = argv[1];
+//
+//	data_line_num = read_file(data, MAX_DATA_NUM, data_file);
+//
+//	printf("data file line num is :%d \n", data_line_num);
+//	if (data_line_num == 0)
+//	{
+//		printf("Please input valid data file.\n");
+//		return -1;
+//	}
+//
+//	char *input_file = argv[2];
+//
+//	info_line_num = read_file(info, MAX_INFO_NUM, input_file);
+//
+//	printf("input file line num is :%d \n", info_line_num);
+//	if (info_line_num == 0)
+//	{
+//		printf("Please input valid info file.\n");
+//		return -1;
+//	}
+//
+//	char *output_file = argv[3];
+//
+//	predict_server(info, data, data_line_num, output_file);
+//
+//	release_buff(info, info_line_num);
+//	release_buff(data, data_line_num);
+//
+//	print_time("End");
+//
+//	return 0;
+//}
